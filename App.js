@@ -1,62 +1,40 @@
 import React, { Component } from 'react';
-import { View, Button, StyleSheet } from 'react-native';
-import { createDrawerNavigator } from 'react-navigation-drawer';
-import { createAppContainer } from 'react-navigation';
+import { AppLoading, Font } from 'expo';
 import { createStore } from 'redux';
 import { Provider } from 'react-redux';
 import reducers from './reducers';
-import Home from './screens/Home.js';
-import MyRecipe from './screens/MyRecipe.js';
-import colors from './constants/Colors.js'
-
-const RootStack = createDrawerNavigator({
-    Home: Home,
-    MyRecipe: MyRecipe
-}, {
-        initialRouteName: 'Home',
-        contentOptions: {
-            activeTintColor: colors.green,
-        },
-    });
-
-const AppContainer = createAppContainer(RootStack);
+import AppContainer from './AppContainer.js';
 
 const store = createStore(reducers);
 
 class App extends Component {
     state = {
-        isWalid: false
+        loaded: false,
     }
-    handlePress = () => {
-        this.setState({ isWalid: true });
+    componentDidMount() {
+        this._loadFontsAsync();
+        
     }
-    render() {
-        if (this.state.isWalid) {
-            return ( 
-                <Provider store={store}>
-                    <AppContainer /> 
-                </Provider>                 
-            )
-        } else {
-            return (
-                <View style={styles.container}>
-                    <Button
-                        title="Klik"
-                        onPress={this.handlePress} />
-                </View>
-            )
-            
-        }
+    _loadFontsAsync = async () => {
+        await Font.loadAsync({
+            'product-sans-bold': require('./assets/fonts/Product-Sans-Bold.ttf'),
+            'product-sans-regular': require('./assets/fonts/Product-Sans-Regular.ttf')
+        });
+        this.setState({loaded: true});
+    }
 
+
+    render() {
+        if (!this.state.loaded) {
+            return <AppLoading />;
+        }
+        return ( 
+            <Provider store={store}>
+                <AppContainer /> 
+            </Provider>                 
+        )        
     }
 }
 
-const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        justifyContent: 'center',
-        alignItems: 'center'
-    }
-})
 
 export default App; 
