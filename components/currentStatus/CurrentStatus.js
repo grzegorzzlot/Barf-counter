@@ -7,7 +7,7 @@ import {connect} from 'react-redux';
 class CurrentStatus extends Component {
 
     render() {
-        // console.log(this.props)
+        console.log(this.props)
         return(
             <View style={styles.container}>
                 <View style={styles.statusBar}></View>
@@ -17,14 +17,16 @@ class CurrentStatus extends Component {
 }
 
 const mapStateToProps = (state)=>{
-    return { 
-        waga: state.catWeight.catWeight,
-        mieso: state.mieso.mieso,
-        serca: state.serca.serca,
-        zoladki: state.zoladki.zoladki,
-        podroby: state.podroby.podroby,
-        kosci: state.kosci.kosci
-    }
+    return {
+        data: { 
+            waga: state.catWeight.catWeight,
+            mieso: state.mieso.mieso,
+            serca: state.serca.serca,
+            zoladki: state.zoladki.zoladki,
+            podroby: state.podroby.podroby,
+            kosci: state.kosci.kosci,
+        }
+    }     
 }
 
 const styles =  StyleSheet.create({

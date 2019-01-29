@@ -4,21 +4,30 @@ import {Text} from '../../customComponents/Components.js';
 import {connect} from 'react-redux';
 import colors from '../../../constants/Colors.js';
 import {getKosci} from '../../../actions/index.js';
+import initialStateMieso from '../../../constants/initialStateMieso.js';
 
 class Kosci extends Component {
     state = {
         value: 'Wybierz wartość',
-        selectValue: 0,
+        selectValue: initialStateMieso,
         inputValue: 0,
         valid: true
     }
     valueChangeHandler = (itemValue)=>{
         const {params} = this.props;
-        params.forEach(i => {
+        params.forEach(i => {            
             if(i["Wartości żywieniowe na 100g żywności"]===itemValue) {
-                this.setState({selectValue: i})
-            }    
+                let obj = Object.assign({}, i);
+                delete obj["Źródło"];
+                delete obj["Wartości żywieniowe na 100g żywności"];
+                delete obj["Typ"];
+                this.setState({selectValue: obj});
+            }  
         });
+        if(itemValue===0) {
+            this.setState({selectValue: initialStateMieso});
+        }
+
         this.setState({value: itemValue});
     }
     inputHandler = (inputValue)=>{
@@ -29,9 +38,18 @@ class Kosci extends Component {
             this.setState({valid: false, inputValue: 0})
         }
     }
+    componentDidMount() {
+        //ta wartość do stora
+        this.props.getKosci(initialStateMieso);
+    }
     componentDidUpdate() {
-        console.log(this.state.selectValue)
-        console.log(this.state.inputValue)
+        const {inputValue, selectValue} = this.state;
+        let dataToStore = Object.assign({}, selectValue)
+        for(i in dataToStore) {
+            dataToStore[i] *=inputValue; 
+        }
+        //ta wartość do stora
+        this.props.getKosci(dataToStore);
     }
     render() {
         const {params} = this.props;
