@@ -1,5 +1,6 @@
+import initialStateMieso from '../constants/initialStateMieso.js';
 let initialState = {
-    zoladki: 0
+    zoladki: initialStateMieso
 }
 const zoladki = (state=initialState, action)=>{
     switch(action.type) {

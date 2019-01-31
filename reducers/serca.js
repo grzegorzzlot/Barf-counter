@@ -1,5 +1,6 @@
+import initialStateMieso from '../constants/initialStateMieso.js';
 let initialState = {
-    serca: 0
+    serca: initialStateMieso
 }
 const serca = (state=initialState, action)=>{
     switch(action.type) {

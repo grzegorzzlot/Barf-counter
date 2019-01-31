@@ -1,5 +1,6 @@
+import initialStateMieso from '../constants/initialStateMieso.js';
 let initialState = {
-    kosci: 0
+    kosci: initialStateMieso
 }
 const kosci = (state=initialState, action)=>{
     switch(action.type) {

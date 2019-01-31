@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import { View, ScrollView, StyleSheet } from 'react-native';
-import CatWeight from './components/CatWeight';
-import Meat from './components/Meat';
+import CatWeight from './CatWeight';
+import Meat from './Meat';
 
 class CreateRecipeContent extends Component {
     render() {

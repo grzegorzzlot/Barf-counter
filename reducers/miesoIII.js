@@ -1,13 +1,13 @@
 import initialStateMieso from '../constants/initialStateMieso.js';
 let initialState = {
-    podroby: initialStateMieso
+    mieso: initialStateMieso
 }
-const podroby = (state=initialState, action)=>{
+const miesoIII = (state=initialState, action)=>{
     switch(action.type) {
-        case "GET_PODROBY": 
+        case "GET_MIESOIII": 
         return Object.assign({}, state, action);
         default: return state
     }    
 } 
 
-export default podroby;
+export default miesoIII;

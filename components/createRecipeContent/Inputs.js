@@ -1,10 +1,8 @@
 import React, {Component} from 'react';
 import { View, Picker, TextInput, StyleSheet } from 'react-native';
-import {Text} from '../../customComponents/Components.js';
-import {connect} from 'react-redux';
-import colors from '../../../constants/Colors.js';
-import {getKosci} from '../../../actions/index.js';
-import initialStateMieso from '../../../constants/initialStateMieso.js';
+import {Text} from '../customComponents/Components.js';
+import colors from '../../constants/Colors.js';
+import initialStateMieso from '../../constants/initialStateMieso.js';
 
 class Kosci extends Component {
     state = {
@@ -40,7 +38,7 @@ class Kosci extends Component {
     }
     componentDidMount() {
         //ta wartość do stora
-        this.props.getKosci(initialStateMieso);
+        this.props.doAction(initialStateMieso);
     }
     componentDidUpdate() {
         const {inputValue, selectValue} = this.state;
@@ -49,9 +47,10 @@ class Kosci extends Component {
             dataToStore[i] *=inputValue; 
         }
         //ta wartość do stora
-        this.props.getKosci(dataToStore);
+        this.props.doAction(dataToStore);
     }
     render() {
+        const {valid} = this.state;
         const {params} = this.props;
         const items = params.map((i,index)=>
             <Picker.Item key={index}
@@ -59,8 +58,7 @@ class Kosci extends Component {
             value={i["Wartości żywieniowe na 100g żywności"]} />
         )
         return(
-            <View style={styles.container}>
-                <Text text='Kości' fontFamily='product-sans-bold'/>
+            <View>
                 <View style={styles.pickerContainer}>
                     <Picker 
                     style={styles.picker}
@@ -72,22 +70,20 @@ class Kosci extends Component {
                     {items}    
                     </Picker>
                     <TextInput
-                    style={styles.input} 
+                    style={[styles.input, valid?styles.inputValid:styles.inputInvalid]} 
                     onChangeText={(inputValue)=>this.inputHandler(inputValue)}/>
-                </View>                
+                </View>
+                {valid?
+                null
+                :<Text text='Powyższe pole musi zawierać liczbę!' color={colors.red} />}  
             </View>
+                            
         )
     }
 }
 
-const mapDispatchToProps = {getKosci}
 
 const styles = StyleSheet.create({  
-    container: {
-        paddingTop: 15,
-        paddingLeft: 15,
-        paddingRight: 15 
-    },
     pickerContainer: {
         flex: 1,
         flexDirection: 'row',
@@ -105,9 +101,15 @@ const styles = StyleSheet.create({
         padding: 5,
         borderRadius: 3,
         borderWidth: 1,
-        borderColor: colors.green
+        borderColor: colors.green,
+        textAlign: 'center'
+    },
+    inputValid: {
+        borderColor: colors.green,
+    },
+    inputInvalid: {
+        borderColor: colors.red,
     }
 })
 
-
-export default connect(null, mapDispatchToProps)(Kosci);
+export default Kosci;

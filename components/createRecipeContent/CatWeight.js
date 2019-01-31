@@ -1,8 +1,8 @@
 import React, {Component} from 'react';
 import { View, TextInput, StyleSheet } from 'react-native';
-import {Text} from '../../customComponents/Components.js';
-import colors from '../../../constants/Colors.js';
-import {getCatWeight} from '../../../actions/index.js';
+import {Text} from '../customComponents/Components.js';
+import colors from '../../constants/Colors.js';
+import {getCatWeight} from '../../actions/index.js';
 import {connect} from 'react-redux';
 
 class CatWeight extends Component {

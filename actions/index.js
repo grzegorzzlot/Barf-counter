@@ -1,6 +1,8 @@
 import {
     GET_CAT_WEIGHT,
     GET_MIESO,
+    GET_MIESOII,
+    GET_MIESOIII,
     GET_SERCA,
     GET_PODROBY,
     GET_ZOLADKI,
@@ -18,6 +20,18 @@ export const getMieso = (mieso)=>{
     return {
         type: GET_MIESO,
         mieso
+    }
+};
+export const getMiesoII = (miesoII)=>{    
+    return {
+        type: GET_MIESOII,
+        miesoII
+    }
+};
+export const getMiesoIII = (miesoIII)=>{    
+    return {
+        type: GET_MIESOIII,
+        miesoIII
     }
 };
 
