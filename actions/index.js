@@ -1,12 +1,7 @@
 import {
     GET_CAT_WEIGHT,
-    GET_MIESO,
-    GET_MIESOII,
-    GET_MIESOIII,
-    GET_SERCA,
-    GET_PODROBY,
-    GET_ZOLADKI,
-    GET_KOSCI
+    ADD_STANDARD_VALUE,
+    DELETE_STANDARD_VALUE
 } from './constants.js';
 
 export const getCatWeight = (catWeight)=>{    
@@ -15,47 +10,16 @@ export const getCatWeight = (catWeight)=>{
         catWeight
     }
 };
-
-export const getMieso = (mieso)=>{    
+export const addStandardValue = (value)=>{    
     return {
-        type: GET_MIESO,
-        mieso
+        type: ADD_STANDARD_VALUE,
+        value
     }
 };
-export const getMiesoII = (miesoII)=>{    
+export const deleteStandardValue = (value)=>{    
     return {
-        type: GET_MIESOII,
-        miesoII
-    }
-};
-export const getMiesoIII = (miesoIII)=>{    
-    return {
-        type: GET_MIESOIII,
-        miesoIII
+        type: DELETE_STANDARD_VALUE,
+        value
     }
 };
 
-export const getSerca = (serca)=>{    
-    return {
-        type: GET_SERCA,
-        serca
-    }
-};
-export const getPodroby = (podroby)=>{    
-    return {
-        type: GET_PODROBY,
-        podroby
-    }
-};
-export const getZoladki = (zoladki)=>{    
-    return {
-        type: GET_ZOLADKI,
-        zoladki
-    }
-};
-export const getKosci = (kosci)=>{    
-    return {
-        type: GET_KOSCI,
-        kosci
-    }
-};
