@@ -11,17 +11,19 @@ class StandardInput extends Component {
         data: [],
         valuePicker: 'Wybierz wartość',
         valueInput: '0',
-        isWalid: false
+        isWalid: false,
+        category: '',
+        typ: ''
     }
     componentDidMount() {
-        const { data, typ } = this.props;
+        const { data, typ, category } = this.props;
         let arr = [];
         data.forEach(i => {
             if(i["Typ"]===typ) {
                 arr.push(i);
             }
         });
-        this.setState({data: arr, typ: typ})
+        this.setState({data: arr, category: category, typ: typ})
     }
     componentDidUpdate(prevProps, prevState) {
         const {valueInput, valuePicker} = this.state;
@@ -42,11 +44,12 @@ class StandardInput extends Component {
         this.setState({valueInput: valueInput})
     }
     handlePress = ()=>{
-        const {valuePicker, valueInput, isWalid, typ} = this.state;
+        const {valuePicker, valueInput, isWalid, category, typ} = this.state;
         if (isWalid) {
             this.props.addStandardValue({
                 label:valuePicker,
                 value: valueInput,
+                category: category,
                 typ: typ
             })
             Alert.alert(`Dodano: ${valuePicker} - ${valueInput}`)

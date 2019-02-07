@@ -1,3 +1,7 @@
 export const GET_CAT_WEIGHT = "GET_CAT_WEIGHT";
 export const ADD_STANDARD_VALUE = "ADD_STANDARD_VALUE";
 export const DELETE_STANDARD_VALUE = "DELETE_STANDARD_VALUE";
+export const GET_EGG = "GET_EGG";
+export const GET_TAURINE = "GET_TAURINE";
+export const GET_WATER = "GET_WATER";
+

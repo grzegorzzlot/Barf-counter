@@ -1,17 +1,14 @@
 import React, {Component} from 'react';
-import { View, TouchableOpacity, StyleSheet } from 'react-native';
-import {Foundation} from '@expo/vector-icons';
+import { View, StyleSheet } from 'react-native';
 import colors from '../../constants/Colors';
 import ModalContainer from './recipeList/Modal';
+import ProgressContainer from './progress/ProgressContainer';
 
 class Bar extends Component {
     render() {
         return(
             <View style={styles.container}>
-                <Foundation 
-                name='results'
-                size={30}
-                />
+                <ProgressContainer/>
                 <ModalContainer />                                
             </View>
         )
