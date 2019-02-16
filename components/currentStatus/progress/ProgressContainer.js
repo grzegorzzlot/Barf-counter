@@ -1,12 +1,13 @@
 import React, {Component} from 'react';
-import { View, Modal, TouchableOpacity, StyleSheet } from 'react-native';
+import { View, ScrollView, Modal, TouchableOpacity, StyleSheet } from 'react-native';
 import {AntDesign, Foundation} from '@expo/vector-icons';
 import colors from '../../../constants/Colors';
-import List from './List';
+import Macro from './Macro.js';
+import Micro from './Micro.js';
 
 class ProgressContainer extends Component {
     state = {
-        modalVisible: false
+        modalVisible: false,
     }
     handleOpen = ()=>{
         this.setState({modalVisible: true});
@@ -41,7 +42,10 @@ class ProgressContainer extends Component {
                             />
                         </TouchableOpacity>                        
                     </View>
-                    <List/>
+                    <ScrollView style={{flex:1}}>
+                        <Macro/>
+                        <Micro/>
+                    </ScrollView>                   
                 </Modal>
             </View>            
         )
