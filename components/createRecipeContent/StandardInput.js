@@ -10,7 +10,7 @@ class StandardInput extends Component {
     state = {
         data: [],
         valuePicker: 'Wybierz wartość',
-        valueInput: '0',
+        valueInput: '',
         isWalid: false,
         category: '',
         typ: ''
@@ -52,11 +52,11 @@ class StandardInput extends Component {
                 category: category,
                 typ: typ
             })
-            Alert.alert(`Dodano: ${valuePicker} - ${valueInput}`)
+            Alert.alert(`Dodano: ${valuePicker} - ${valueInput}g`)
         }        
     }
     render() {
-        const { data } = this.state;
+        const { data, typ } = this.state;
         const items = data.map((i,index)=>
             <Picker.Item key={index}
             label={i["Wartości żywieniowe na 100g żywności"]} 
@@ -65,46 +65,54 @@ class StandardInput extends Component {
         )
         return(
             <View style={styles.pickerContainer}>
-                <Picker
-                style={styles.picker}
-                selectedValue={this.state.valuePicker}
-                onValueChange={this.onValueChange}
-                >   
-                    <Picker.Item
-                    label='Wybierz wartość' 
-                    value='Wybierz wartość' 
-                    color={colors.red}/>
-                    {items}
-                </Picker>
-                <TextInput
-                onChangeText={this.inputChange}
-                value={this.state.valueInput} 
-                style={styles.input}
-                />
-                <TouchableHighlight
-                style={styles.add}
-                onPress={this.handlePress}
-                underlayColor={colors.grey}
-                >
-                    <Entypo 
-                    name='add-to-list'
-                    size={30}
+                <Text text={typ} />
+                <View style={styles.inner}>
+                    <Picker
+                    style={styles.picker}
+                    selectedValue={this.state.valuePicker}
+                    onValueChange={this.onValueChange}
+                    >   
+                        <Picker.Item
+                        label='Wybierz wartość' 
+                        value='Wybierz wartość' 
+                        color={colors.red}
+                        />
+                        {items}
+                    </Picker>
+                    <TextInput
+                    onChangeText={this.inputChange}
+                    keyboardType='numeric'
+                    value={this.state.valueInput} 
+                    style={styles.input}
                     />
-                </TouchableHighlight>                 
+                    <TouchableHighlight
+                    style={styles.add}
+                    onPress={this.handlePress}
+                    underlayColor={colors.grey} 
+                    >
+                        <Entypo 
+                        name='add-to-list'
+                        size={30}
+                        />
+                    </TouchableHighlight> 
+                </View>                                
             </View>
         )
-    }
-    
+    }   
 }
 
 
 const styles = StyleSheet.create({  
-    pickerContainer: {
+    pickerContainer: {        
+        padding: 15,
+        borderBottomColor: colors.mediumGrey,
+        borderBottomWidth: 1
+    },
+    inner: {
         flex: 1,
         flexDirection: 'row',
         justifyContent: 'space-between',
-        alignItems: 'center',
-        padding: 15,
+        alignItems: 'center'
     },
     picker: {
         flex: 1,

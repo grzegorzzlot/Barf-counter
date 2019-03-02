@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import { View, Modal, TouchableOpacity, StyleSheet } from 'react-native';
+import {Text} from '../../customComponents/Components.js';
 import {AntDesign, Entypo} from '@expo/vector-icons';
 import colors from '../../../constants/Colors';
 import List from './List';
@@ -23,7 +24,6 @@ class ModalContainer extends Component {
         this.setState({modalVisible: false});
     }   
     render() {
-        // console.log(this.props.data)
         const {modalVisible} = this.state;
         return(
             <View>
@@ -41,11 +41,16 @@ class ModalContainer extends Component {
                 onRequestClose={this.handleClose}
                 >
                     <View style={styles.bar}>
+                        <Text 
+                        text='Obecny przepis'
+                        fontSize={20}
+                        fontWeight='700' 
+                        />
                         <TouchableOpacity
                         onPress={this.handleClose}
                         >
                             <AntDesign 
-                            name='close'
+                            name='arrowleft'
                             size={30}
                             />
                         </TouchableOpacity>                        
@@ -66,7 +71,8 @@ const styles = StyleSheet.create({
     bar: {
         flex: -1,
         flexDirection: 'row',
-        justifyContent: 'flex-end',
+        justifyContent: 'space-between',
+        alignItems: 'center',
         padding: 15,
         borderBottomWidth: 1,
         borderColor: colors.grey

@@ -8,27 +8,28 @@ import {connect} from 'react-redux';
 
 class CreateRecipeContent extends Component {
     render() {
+        const {cat, egg, taurin, water} = this.props;
         return(
             <View style={styles.container}>
                 <ScrollView style={styles.scroll}>
                     <ModalInputs 
-                    action={getCatWeight}
+                    action={cat}
                     label='Waga kota w kilogramach'
                     unit='kg'
                     />
                     <List /> 
                     <ModalInputs 
-                    action={getEgg}
+                    action={egg}
                     label='Żółtka jaj'
                     unit='sztuk'
                     />
                      <ModalInputs 
-                    action={getTaurin}
+                    action={taurin}
                     label='Tauryna'
                     unit='g'
                     />
                      <ModalInputs 
-                    action={getWater}
+                    action={water}
                     label='Woda'
                     unit='g'
                     />                   
@@ -38,11 +39,16 @@ class CreateRecipeContent extends Component {
     }
 }
 
-const mapDispatchToProps = {getCatWeight}
+const mapDispatchToProps = {
+    cat: getCatWeight, 
+    egg: getEgg, 
+    taurin: getTaurin, 
+    water: getWater
+}
 
 const styles =  StyleSheet.create({
     container: {
-        flex: 3,
+        flex: 1,
     },
     scroll: {
         flex: 1

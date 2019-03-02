@@ -1,34 +1,47 @@
 import React, {Component} from 'react';
-import { View, TextInput, StyleSheet } from 'react-native';
+import { View, TextInput, TouchableHighlight, Alert, StyleSheet } from 'react-native';
+import { Entypo } from '@expo/vector-icons';
 import {Text} from '../customComponents/Components.js';
 import colors from '../../constants/Colors.js';
+import { connect } from 'react-redux';
 
 class CatWeight extends Component {
-    state = {valid: true}
-    onChangeHandle = (text)=>{
+    state = {
+        text: ''
+    }
+    handlePress = ()=>{
+        const {text} = this.state;
         const reg = /^[0-9]*$/gm;
         if (reg.test(text) && text.length!==0) {
-            this.props.action(parseInt(text));
-            this.setState({valid: true});
-        } else {
-            this.props.action(0);
-            this.setState({valid: false})
-        }        
+            console.log(parseInt(text))
+            this.props.action.bind({catWeight: parseInt(text)});
+            Alert.alert(`Wartość: ${text} dodano`)
+        } 
     }
     render() {
-        const {valid} = this.state;
+        console.log(this.props.aaa)
         return(
             <View style={styles.wrapper}>
                 <View style={styles.container}>
-                    <Text text={this.props.label}/>              
-                    <TextInput 
-                    onChangeText={(text)=>this.onChangeHandle(text)}
-                    style={[styles.input, valid?styles.inputValid:styles.inputInvalid]}
-                    />
+                    <Text text={this.props.label}/>  
+                    <View style={styles.innerContainer}>
+                        <TextInput 
+                        onChangeText={(text) => this.setState({text})}
+                        keyboardType='numeric'
+                        style={styles.input}
+                        />
+                        <TouchableHighlight
+                        style={styles.add}
+                        onPress={this.handlePress}
+                        underlayColor={colors.grey}
+                        >
+                            <Entypo 
+                            name='add-to-list'
+                            size={30}
+                            />
+                        </TouchableHighlight>
+                    </View>                                 
                 </View>
-                {valid?
-                null
-                :<Text text='Powyższe pole musi zawierać liczbę!' color={colors.red} />}
             </View>
             
         )
@@ -39,7 +52,9 @@ class CatWeight extends Component {
 
 const styles =  StyleSheet.create({
     wrapper: {
-        padding: 15
+        padding: 15,
+        borderBottomColor: colors.mediumGrey,
+        borderBottomWidth: 1,
     },
     container: {
         flex: 1,
@@ -53,14 +68,27 @@ const styles =  StyleSheet.create({
         borderWidth: 1,        
         padding: 5,
         borderRadius: 3,
-        textAlign: 'center'
+        textAlign: 'center',
+        borderColor: colors.green
     },
-    inputValid: {
-        borderColor: colors.green,
+    innerContainer: {
+        flex: -1,
+        flexDirection: 'row'
     },
-    inputInvalid: {
-        borderColor: colors.red,
+    add: {
+        flexDirection: 'row',
+        justifyContent: 'center',
+        marginLeft: 20,
+        width: 50,
+        padding: 5,
+        borderRadius: 7
     }
 });
 
-export default CatWeight;
+const mapStateToProps = (state)=>{
+    return {
+        aaa: state
+    }
+}
+
+export default connect(mapStateToProps, null)(CatWeight);

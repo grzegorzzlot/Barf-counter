@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import { View, ScrollView, Modal, TouchableOpacity, StyleSheet } from 'react-native';
+import {Text} from '../../customComponents/Components.js';
 import {AntDesign, Foundation} from '@expo/vector-icons';
 import colors from '../../../constants/Colors';
 import Macro from './Macro.js';
@@ -33,11 +34,16 @@ class ProgressContainer extends Component {
                 onRequestClose={this.handleClose}
                 >
                     <View style={styles.bar}>
+                        <Text 
+                        text='Wyliczone wartości'
+                        fontSize={20}
+                        fontWeight='700' 
+                        />
                         <TouchableOpacity
                         onPress={this.handleClose}
                         >
                             <AntDesign 
-                            name='close'
+                            name='arrowleft'
                             size={30}
                             />
                         </TouchableOpacity>                        
@@ -56,7 +62,8 @@ const styles = StyleSheet.create({
     bar: {
         flex: -1,
         flexDirection: 'row',
-        justifyContent: 'flex-end',
+        justifyContent: 'space-between',
+        alignItems: 'center',
         padding: 15,
         borderBottomWidth: 1,
         borderColor: colors.grey

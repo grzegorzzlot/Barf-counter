@@ -1,6 +1,5 @@
 import React, {Component} from 'react';
 import { View, StyleSheet } from 'react-native';
-import { Dimensions } from 'react-native';
 import {Text} from '../../customComponents/Components.js';
 import colors from '../../../constants/Colors';
 import { macroMin, macroMax } from '../../../constants/rules.js';
@@ -11,7 +10,8 @@ import ProgressBar from './ProgressBar.js';
 class ListItem extends Component {
     state = {
         barfWeight: 0,
-        amount: 0
+        amount: 0,
+        sum: 0
     }
     componentDidMount() {
         const {name} = this.props;
@@ -20,6 +20,8 @@ class ListItem extends Component {
         const sumOfIngredients = counter.sumIngredients();
         let barfWeight = counter.sumWeight();
         let amount;
+        //get sum of ingedient
+        let sum = sumOfIngredients[name];
         if(name==="Woda") {
             amount = sumOfIngredients["Woda"]/barfWeight;
         } else {
@@ -29,18 +31,20 @@ class ListItem extends Component {
         //assign 0 when amount is not a number
         if(isNaN(amount)) {
             amount=0;
+            sum=0;
         }   
         this.setState({
             barfWeight: barfWeight,
-            amount: amount
+            amount: amount,
+            sum: sum
         });               
     }
     render() {
-        const {amount} = this.state;
-        const { width } = Dimensions.get('window');
+        const {amount, sum} = this.state;
         const {name} = this.props;
         let val = amount*100;
-        let txt = val.toFixed(2).toString().replace('.',',');
+        let percent = val.toFixed(2).toString().replace('.',',');
+        let sumIngr = sum.toFixed(2).toString().replace('.',',');
         return( 
             <View style={styles.container}>
                 <Text text={name} />
@@ -51,9 +55,10 @@ class ListItem extends Component {
                     max={macroMax[name]}
                     />                                        
                 </View>  
-                <View style={{
-                    marginLeft: (amount*width)
-                }}><Text text={txt+' %'} /></View>              
+                <View style={styles.textField}>
+                    <Text text={sumIngr+' g'} />
+                    <Text text={percent+' %'} />
+                </View>              
             </View>
         )
     }
@@ -66,6 +71,11 @@ const styles = StyleSheet.create({
         borderColor: colors.grey
     },
     progressWrapper: {
+        flex: 1,
+        justifyContent: 'space-between',
+        flexDirection: 'row'
+    },
+    textField:{
         flex: 1,
         justifyContent: 'space-between',
         flexDirection: 'row'
