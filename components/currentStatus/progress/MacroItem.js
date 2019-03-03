@@ -37,8 +37,25 @@ class ListItem extends Component {
             barfWeight: barfWeight,
             amount: amount,
             sum: sum
-        });               
+        }); 
+        if(name==='Białko') {
+            this.protein(); 
+        }                    
     }
+
+    protein = (param)=>{
+        const {barfWeight} = this.state;
+        const weight = this.props.data.catWeight.catWeight;
+        const days = Math.floor(barfWeight/(weight*25));
+        const result = param/(days*weight);
+        if(result) {
+            return result.toFixed(2).toString().replace('.',',');
+        }
+        else {
+            return '0'
+        }
+    }
+
     render() {
         const {amount, sum} = this.state;
         const {name} = this.props;
@@ -47,17 +64,23 @@ class ListItem extends Component {
         let sumIngr = sum.toFixed(2).toString().replace('.',',');
         return( 
             <View style={styles.container}>
-                <Text text={name} />
+                <View style={styles.header}><Text text={name} fontWeight='700' fontSize={18}/></View>                
                 <View style={styles.progressWrapper}>
                     <ProgressBar 
                     amount={amount}
                     min={macroMin[name]}
                     max={macroMax[name]}
                     />                                        
+                </View>
+                <View style={styles.range}>
+                    <Text text='0%' />
+                    <Text text={(amount*100).toFixed(2).toString().replace('.',',')+'%'} />
+                    <Text text='100%' />
                 </View>  
                 <View style={styles.textField}>
-                    <Text text={sumIngr+' g'} />
-                    <Text text={percent+' %'} />
+                    <Text text={`Masa składnika: ${sumIngr}g`} />
+                    <Text text={`Masa składnika wedlug normy: ${percent}g`} />
+                    {name==='Białko'? <Text text={`Dzienna ilość białka na kg masy kota: ${this.protein(sum)}g`} /> : null}                                       
                 </View>              
             </View>
         )
@@ -70,15 +93,22 @@ const styles = StyleSheet.create({
         borderBottomWidth: 1,
         borderColor: colors.grey
     },
+    header: {
+        marginBottom: 20,
+    },
     progressWrapper: {
         flex: 1,
         justifyContent: 'space-between',
         flexDirection: 'row'
     },
     textField:{
+        flex: 1
+    },
+    range: {
+        marginBottom: 20,
         flex: 1,
-        justifyContent: 'space-between',
-        flexDirection: 'row'
+        flexDirection: 'row',
+        justifyContent: 'space-between'
     }
 })
 
@@ -87,5 +117,6 @@ const mapStateToProps = (state)=>{
         data: state
     }
 }
+
 
 export default connect(mapStateToProps, null)(ListItem);

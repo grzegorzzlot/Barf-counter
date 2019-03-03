@@ -1,29 +1,30 @@
 import React, {Component} from 'react';
 import { View, ScrollView, StyleSheet } from 'react-native';
-import ModalInputs from './ModalInputs.js';
+// import ModalInputs from './ModalInputs.js';
 import List from './List.js';
 import {getCatWeight, getEgg, getTaurin, getWater} from '../../actions/index.js';
 import {connect} from 'react-redux';
+import CatWeight from './CatWeight.js';
 
 
 class CreateRecipeContent extends Component {
     render() {
-        const {cat, egg, taurin, water} = this.props;
+        // const {cat, egg, taurin, water} = this.props;
         return(
             <View style={styles.container}>
                 <ScrollView style={styles.scroll}>
-                    <ModalInputs 
-                    action={cat}
+                    <CatWeight 
+                    // action={cat}
                     label='Waga kota w kilogramach'
                     unit='kg'
                     />
                     <List /> 
-                    <ModalInputs 
+                    {/* <ModalInputs 
                     action={egg}
                     label='Żółtka jaj'
                     unit='sztuk'
                     />
-                     <ModalInputs 
+                    <ModalInputs 
                     action={taurin}
                     label='Tauryna'
                     unit='g'
@@ -32,7 +33,7 @@ class CreateRecipeContent extends Component {
                     action={water}
                     label='Woda'
                     unit='g'
-                    />                   
+                    />                     */}
                 </ScrollView>
             </View>
         )

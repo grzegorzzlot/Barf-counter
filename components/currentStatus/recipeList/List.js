@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
-import { FlatList } from 'react-native';
+import { FlatList, View } from 'react-native';
 import ListItem from './ListItem.js';
+import TopInfo from './TopInfo.js';
 
 class List extends Component {
 
@@ -14,11 +15,14 @@ class List extends Component {
     _keyExtractor = (item, index) => index.toString();
     render() {
         return(
-            <FlatList
-            data={this.props.data}
-            renderItem={this._renderItem} 
-            keyExtractor={this._keyExtractor}
-            />
+            <View>
+                <TopInfo />
+                <FlatList
+                data={this.props.data}
+                renderItem={this._renderItem} 
+                keyExtractor={this._keyExtractor}
+                />
+            </View>            
         )
     }
 }

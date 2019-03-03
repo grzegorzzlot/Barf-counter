@@ -5,6 +5,7 @@ import {AntDesign, Foundation} from '@expo/vector-icons';
 import colors from '../../../constants/Colors';
 import Macro from './Macro.js';
 import Micro from './Micro.js';
+import CompareItem from './CompareItem.js';
 
 class ProgressContainer extends Component {
     state = {
@@ -50,6 +51,14 @@ class ProgressContainer extends Component {
                     </View>
                     <ScrollView style={{flex:1}}>
                         <Macro/>
+                        <CompareItem 
+                        items={['Wapń', 'Fosfor']}
+                        norma='1,15'
+                        />
+                        <CompareItem 
+                        items={['Potas', 'Sód']}
+                        norma='1,35'
+                        />
                         <Micro/>
                     </ScrollView>                   
                 </Modal>

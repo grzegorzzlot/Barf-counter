@@ -31,14 +31,14 @@ class MicroItem extends Component {
 
     render() {
         const {amount, standardValue} = this.state;
-        const {name} = this.props;
+        const {name, unit} = this.props;
         let sumIngr = amount.toFixed(2).toString().replace('.',',');
         return( 
             <View style={styles.container}>
-                <Text text={name} /> 
+                <View style={styles.header}><Text text={name} fontWeight='700' fontSize={18}/></View>
                 <View style={styles.inner}>
-                    <Text text={sumIngr} />
-                    <Text text={`Norma: ${standardValue}`} />
+                    <Text text={sumIngr+unit} />
+                    <Text text={`Norma: ${standardValue.toFixed(2).toString().replace('.',',')+unit}`} />
                 </View>               
             </View>
         )
@@ -50,6 +50,9 @@ const styles = StyleSheet.create({
         padding: 15,
         borderBottomWidth: 1,
         borderColor: colors.grey
+    },
+    header: {
+        marginBottom: 20,
     },
     inner: {
         flex: 1,
