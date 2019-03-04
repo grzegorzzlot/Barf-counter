@@ -1,14 +1,19 @@
 import React, {Component} from 'react';
-import { View, StyleSheet } from 'react-native';
+import { View, Image, StyleSheet } from 'react-native';
 import colors from '../../constants/Colors';
 import ModalContainer from './recipeList/Modal';
 import ProgressContainer from './progress/ProgressContainer';
+import logo from '../../assets/icon.png';
 
 class Bar extends Component {
     render() {
         return(
             <View style={styles.container}>
                 <ProgressContainer/>
+                <Image
+                style={{width: 30, height: 30}}
+                source={logo}
+                />
                 <ModalContainer />                                
             </View>
         )

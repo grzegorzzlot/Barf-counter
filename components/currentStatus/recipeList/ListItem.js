@@ -24,7 +24,7 @@ class ListItem extends Component {
                 <View>
                     <Text text={label} fontFamily='product-sans-bold'/>
                     <Text text={`Typ: ${typ}`} fontFamily='product-sans-bold'/>
-                    <Text text={`Ilość: ${value}g`} />
+                    <Text text={`Ilość: ${value}${typ==='jaja'? 'sztuk' : 'g'}`} />
                 </View>
                 <TouchableOpacity
                 onPress={this.removeHandle}

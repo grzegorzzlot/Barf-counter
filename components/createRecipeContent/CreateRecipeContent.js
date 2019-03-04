@@ -5,35 +5,26 @@ import List from './List.js';
 import {getCatWeight, getEgg, getTaurin, getWater} from '../../actions/index.js';
 import {connect} from 'react-redux';
 import CatWeight from './CatWeight.js';
+import Taurin from './Taurin.js';
+import Water from './Water.js';
+import Egg from './Egg.js';
+import Submit from './Submit.js';
 
 
 class CreateRecipeContent extends Component {
     render() {
-        // const {cat, egg, taurin, water} = this.props;
         return(
             <View style={styles.container}>
                 <ScrollView style={styles.scroll}>
                     <CatWeight 
-                    // action={cat}
                     label='Waga kota w kilogramach'
                     unit='kg'
                     />
                     <List /> 
-                    {/* <ModalInputs 
-                    action={egg}
-                    label='Żółtka jaj'
-                    unit='sztuk'
-                    />
-                    <ModalInputs 
-                    action={taurin}
-                    label='Tauryna'
-                    unit='g'
-                    />
-                     <ModalInputs 
-                    action={water}
-                    label='Woda'
-                    unit='g'
-                    />                     */}
+                    <Egg />
+                    <Taurin />
+                    <Water />
+                    <Submit />
                 </ScrollView>
             </View>
         )

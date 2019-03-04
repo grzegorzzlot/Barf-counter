@@ -74,12 +74,12 @@ class ListItem extends Component {
                 </View>
                 <View style={styles.range}>
                     <Text text='0%' />
-                    <Text text={(amount*100).toFixed(2).toString().replace('.',',')+'%'} />
+                    <Text text={percent+'%'} />
                     <Text text='100%' />
                 </View>  
                 <View style={styles.textField}>
                     <Text text={`Masa składnika: ${sumIngr}g`} />
-                    <Text text={`Masa składnika wedlug normy: ${percent}g`} />
+                    {/* <Text text={`Masa składnika wedlug normy: ${percent}g`} /> */}
                     {name==='Białko'? <Text text={`Dzienna ilość białka na kg masy kota: ${this.protein(sum)}g`} /> : null}                                       
                 </View>              
             </View>

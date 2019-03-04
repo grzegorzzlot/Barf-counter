@@ -30,7 +30,7 @@ class CompareItem extends Component {
             <View style={styles.container}>
                 <View style={styles.header}><Text text={`${items[0]}:${items[1]}`} fontWeight='700' fontSize={18}/></View>
                 <View style={styles.inner}>
-                    <Text text={`Stosunek: ${amount}`} />
+                    <Text text={`Stosunek: ${isNaN(amount)? '0' : amount}`} />
                     <Text text={`Norma: ${norma}`} />
                 </View>               
             </View>

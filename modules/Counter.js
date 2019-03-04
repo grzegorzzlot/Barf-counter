@@ -4,12 +4,15 @@ import ryby from '../constants/data/ryby';
 import suplementy from '../constants/data/suplementy';
 import tluszcze from '../constants/data/tluszcze';
 import warzywa from '../constants/data/warzywa';
+import woda from '../constants/data/woda';
+import jaja from '../constants/data/jaja';
+import tauryna from '../constants/data/tauryna';
 
 
 const privateMethods = {
     findElement(item, value, category) {
         let data;
-        category.forEach(i=>{            
+        category.forEach(i=>{           
             if(i['Wartości żywieniowe na 100g żywności']===item) {
                 const obj ={};
                 for(let key in i) {
@@ -71,6 +74,9 @@ export class Counter {
                 case 'suplementy' : return privateMethods.findElement(i.label, i.value, suplementy);
                 case 'tluszcze' : return privateMethods.findElement(i.label, i.value, tluszcze);
                 case 'warzywa' : return privateMethods.findElement(i.label, i.value, warzywa);
+                case 'woda' : return privateMethods.findElement(i.label, i.value, woda);
+                case 'tauryna' : return privateMethods.findElement(i.label, i.value, tauryna);
+                case 'jaja' : return privateMethods.findElement(i.label, i.value, jaja);
             }           
         });
         return privateMethods.getSum(data)
