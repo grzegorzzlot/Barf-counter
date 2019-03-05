@@ -9,12 +9,15 @@ class Bar extends Component {
     render() {
         return(
             <View style={styles.container}>
-                <ProgressContainer/>
-                <Image
-                style={{width: 30, height: 30}}
-                source={logo}
-                />
-                <ModalContainer />                                
+                <View style={styles.inner}>
+                    <ProgressContainer/>
+                    <Image
+                    style={{width: 30, height: 30}}
+                    source={logo}
+                    />
+                    <ModalContainer />
+                </View>
+                                                
             </View>
         )
     }
@@ -22,12 +25,26 @@ class Bar extends Component {
 
 const styles = StyleSheet.create({
     container: {
+        paddingTop: 25,
+        paddingBottom: 25,
+        paddingLeft: 10,
+        paddingRight: 10,
+    }, 
+    inner: {
         flex: -1,
+        padding: 8,
         flexDirection: 'row',
         justifyContent: 'space-between',
-        padding: 15,
-        borderBottomWidth: 1,
-        borderColor: colors.grey
+        borderRadius: 13,
+        backgroundColor: colors.white,
+        shadowColor: "#000",
+        shadowOffset: {
+            width: 0,
+            height: 1,
+        },
+        shadowOpacity: 0.22,
+        shadowRadius: 2.22,
+        elevation: 3,
     }
 })
 

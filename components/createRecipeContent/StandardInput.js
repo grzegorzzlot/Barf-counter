@@ -84,6 +84,7 @@ class StandardInput extends Component {
                     keyboardType='numeric'
                     value={this.state.valueInput} 
                     style={styles.input}
+                    placeholder='Waga'
                     />
                     <TouchableHighlight
                     style={styles.add}
@@ -92,7 +93,7 @@ class StandardInput extends Component {
                     >
                         <Entypo 
                         name='add-to-list'
-                        size={30}
+                        size={20}
                         />
                     </TouchableHighlight> 
                 </View>                                
@@ -103,7 +104,8 @@ class StandardInput extends Component {
 
 
 const styles = StyleSheet.create({  
-    pickerContainer: {        
+    pickerContainer: { 
+        backgroundColor: colors.white,       
         padding: 15,
         borderBottomColor: colors.mediumGrey,
         borderBottomWidth: 1
@@ -120,11 +122,9 @@ const styles = StyleSheet.create({
     },
     input: {
         width: 50,
-        padding: 5,
-        borderRadius: 3,
-        borderWidth: 1,
-        borderColor: colors.green,
-        textAlign: 'center'
+        borderBottomWidth: 1,        
+        textAlign: 'center',
+        borderColor: colors.green
     },
     inputValid: {
         borderColor: colors.green,

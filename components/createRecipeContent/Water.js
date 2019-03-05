@@ -29,26 +29,28 @@ class Water extends Component {
     }
     render() {
         return(
-            <View style={styles.container}>
-                <Text text='Woda'/>  
-                <View style={styles.innerContainer}>
-                    <TextInput 
-                    onChangeText={(text) => this.setState({text})}
-                    keyboardType='numeric'
-                    style={styles.input}
-                    />
-                    <TouchableHighlight
-                    style={styles.add}
-                    onPress={this.handlePress}
-                    underlayColor={colors.grey}
-                    >
-                        <Entypo 
-                        name='add-to-list'
-                        size={30}
+            <View style={styles.wrapper}>
+                <View style={styles.container}>
+                    <Text text='Woda'/>  
+                    <View style={styles.innerContainer}>
+                        <TextInput 
+                        onChangeText={(text) => this.setState({text})}
+                        keyboardType='numeric'
+                        style={styles.input}
                         />
-                    </TouchableHighlight>
-                </View>                                 
-            </View>                            
+                        <TouchableHighlight
+                        style={styles.add}
+                        onPress={this.handlePress}
+                        underlayColor={colors.grey}
+                        >
+                            <Entypo 
+                            name='add-to-list'
+                            size={20}
+                            />
+                        </TouchableHighlight>
+                    </View>                                 
+                </View>
+            </View>                                       
         )
     }
 }
@@ -56,21 +58,29 @@ class Water extends Component {
 
 
 const styles =  StyleSheet.create({
+    wrapper: {
+        padding: 10,
+    },
     container: {
         flex: 1,
+        padding: 8,
         flexDirection: 'row',
         justifyContent: 'space-between',
         alignItems: 'center',
-        padding: 15,
-        borderBottomColor: colors.mediumGrey,
-        borderBottomWidth: 1
+        borderRadius: 13,
+        backgroundColor: colors.white,
+        shadowColor: "#000",
+        shadowOffset: {
+            width: 0,
+            height: 1,
+        },
+        shadowOpacity: 0.22,
+        shadowRadius: 2.22,
+        elevation: 1,
     },
     input: {
         width: 50,
-        marginTop: 7,
-        borderWidth: 1,        
-        padding: 5,
-        borderRadius: 3,
+        borderBottomWidth: 1,        
         textAlign: 'center',
         borderColor: colors.green
     },

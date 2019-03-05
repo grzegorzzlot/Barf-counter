@@ -33,42 +33,45 @@ class CatWeight extends Component {
     render() {
         const {value} = this.state;
         return(
-            <View style={styles.container}>
-                <Text text='Zółtka jaj'/>                  
-                <View style={styles.numberInput}>
+            <View style={styles.wrapper}>
+                <View style={styles.container}>
+                    <Text text='Zółtka jaj'/>                  
+                    <View style={styles.numberInput}>
+                        <TouchableHighlight
+                        style={styles.buttonMinus}
+                        onPress={this.minus}
+                        underlayColor={colors.green}
+                        >
+                            <AntDesign 
+                            name='minus'
+                            size={20}
+                            />
+                        </TouchableHighlight>
+                        <View style={styles.valueInput}><Text text={value} /></View>
+                        <TouchableHighlight
+                        style={styles.buttonPlus}
+                        onPress={this.plus}
+                        underlayColor={colors.green}
+                        >
+                            <AntDesign 
+                            name='plus'
+                            size={20}
+                            />
+                        </TouchableHighlight>                    
+                    </View>
                     <TouchableHighlight
-                    style={styles.buttonMinus}
-                    onPress={this.minus}
-                    underlayColor={colors.green}
-                    >
-                        <AntDesign 
-                        name='minus'
-                        size={30}
+                        style={styles.add}
+                        onPress={this.handlePress}
+                        underlayColor={colors.grey}
+                        >
+                        <Entypo 
+                        name='add-to-list'
+                        size={20}
                         />
-                    </TouchableHighlight>
-                    <View style={styles.valueInput}><Text text={value} /></View>
-                    <TouchableHighlight
-                    style={styles.buttonPlus}
-                    onPress={this.plus}
-                    underlayColor={colors.green}
-                    >
-                        <AntDesign 
-                        name='plus'
-                        size={30}
-                        />
-                    </TouchableHighlight>                    
+                    </TouchableHighlight>                                 
                 </View>
-                <TouchableHighlight
-                    style={styles.add}
-                    onPress={this.handlePress}
-                    underlayColor={colors.grey}
-                    >
-                    <Entypo 
-                    name='add-to-list'
-                    size={30}
-                    />
-                </TouchableHighlight>                                 
-            </View>            
+            </View>
+                        
         )
     }
 }
@@ -76,26 +79,37 @@ class CatWeight extends Component {
 
 
 const styles =  StyleSheet.create({
+    wrapper: {
+        padding: 10,
+    },
     container: {
         flex: 1,
+        padding: 8,
         flexDirection: 'row',
         justifyContent: 'space-between',
         alignItems: 'center',
-        padding: 15,
-        borderBottomColor: colors.mediumGrey,
-        borderBottomWidth: 1,
+        borderRadius: 13,
+        backgroundColor: colors.white,
+        shadowColor: "#000",
+        shadowOffset: {
+            width: 0,
+            height: 1,
+        },
+        shadowOpacity: 0.22,
+        shadowRadius: 2.22,
+        elevation: 1,
     },
     numberInput: {
         flex: -1,
-        width: 135,
+        width: 105,
         flexDirection: 'row'
     },
     valueInput: {
         flex: 1,
         justifyContent: 'center',
         alignItems: 'center',
-        height: 45,
-        width: 45,
+        height: 35,
+        width: 35,
         borderColor: colors.grey,
         borderBottomWidth: 1,
         borderTopWidth: 1,
@@ -104,8 +118,8 @@ const styles =  StyleSheet.create({
         flex: 1,
         justifyContent: 'center',
         alignItems: 'center',
-        height: 45,
-        width: 45,
+        height: 35,
+        width: 35,
         borderColor: colors.grey,
         borderWidth: 1,
         borderBottomLeftRadius: 4,
@@ -115,8 +129,8 @@ const styles =  StyleSheet.create({
         flex: 1,
         justifyContent: 'center',
         alignItems: 'center',
-        height: 45,
-        width: 45,
+        height: 35,
+        width: 35,
         borderColor: colors.grey,
         borderWidth: 1,
         borderBottomRightRadius: 4,

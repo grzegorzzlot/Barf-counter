@@ -33,6 +33,7 @@ class CatWeight extends Component {
                         onChangeText={(text) => this.setState({text})}
                         keyboardType='numeric'
                         style={styles.input}
+                        placeholder='Waga'
                         />
                         <TouchableHighlight
                         style={styles.add}
@@ -41,7 +42,7 @@ class CatWeight extends Component {
                         >
                             <Entypo 
                             name='add-to-list'
-                            size={30}
+                            size={20}
                             />
                         </TouchableHighlight>
                     </View>                                 
@@ -58,25 +59,31 @@ class CatWeight extends Component {
 
 const styles =  StyleSheet.create({
     wrapper: {
-        padding: 15,
-        borderBottomColor: colors.mediumGrey,
-        borderBottomWidth: 1,
+        padding: 10,
     },
     container: {
         flex: 1,
+        padding: 8,
         flexDirection: 'row',
         justifyContent: 'space-between',
-        alignItems: 'center'
+        alignItems: 'center',
+        borderRadius: 13,
+        backgroundColor: colors.white,
+        shadowColor: "#000",
+        shadowOffset: {
+            width: 0,
+            height: 1,
+        },
+        shadowOpacity: 0.22,
+        shadowRadius: 2.22,
+        elevation: 1,
     },
     input: {
         width: 50,
-        marginTop: 7,
-        borderWidth: 1,        
-        padding: 5,
-        borderRadius: 3,
+        borderBottomWidth: 1,        
         textAlign: 'center',
         borderColor: colors.green
-    },
+    }, 
     innerContainer: {
         flex: -1,
         flexDirection: 'row'

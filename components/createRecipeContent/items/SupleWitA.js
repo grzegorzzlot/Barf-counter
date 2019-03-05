@@ -40,10 +40,15 @@ class SupleWitA extends Component {
                 activeOpacity={1}
                 >
                     <Entypo 
-                    size={20}
+                    size={16}
                     name={isWisible? 'chevron-thin-down': 'chevron-thin-right'}
                     />
-                    <Text text='Witamina A, witamina D' fontSize={20}/>
+                    <Text text='Witamina A, witamina D' fontSize={16}/>
+                    <Entypo 
+                    style={{position: 'absolute', right: 15, top: 15}}
+                    size={20}
+                    name={isWisible? 'minus': 'plus'}
+                    />
                 </TouchableOpacity>
                 {isWisible?
                 <FlatList 
@@ -64,9 +69,8 @@ const styles = StyleSheet.create({
         paddingLeft: 10, 
         paddingTop: 15,
         paddingBottom: 15,       
-        backgroundColor: colors.lightGrey,
-        borderBottomColor: colors.grey,
-        borderBottomWidth: 1
+        backgroundColor: colors.white,
+
     }
 })
 

@@ -1,8 +1,10 @@
 import React, {Component} from 'react';
-import { View, StyleSheet } from 'react-native';
+import { ScrollView, View, StyleSheet } from 'react-native';
+import {Constants} from 'expo';
 import CurrentStatus from '../components/currentStatus/CurrentStatus.js'
 import CreateRecipeContent from '../components/createRecipeContent/CreateRecipeContent.js';
 import { MaterialIcons } from '@expo/vector-icons';
+import colors from '../constants/Colors.js';
 
 class CreateRecipe extends Component {
     static navigationOptions = {
@@ -14,8 +16,12 @@ class CreateRecipe extends Component {
     render() {
         return (
             <View style={styles.container}>
-                <CurrentStatus />
-                <CreateRecipeContent />
+                <View style={styles.statusBar}></View>
+                <ScrollView>
+                    <CurrentStatus />
+                    <CreateRecipeContent />
+                </ScrollView>
+                
             </View>
         );
     }
@@ -23,7 +29,12 @@ class CreateRecipe extends Component {
 
 const styles =  StyleSheet.create({
     container: {
-        flex: 1
+        flex: 1,
+        backgroundColor: colors.bgColor
+    },
+    statusBar: {
+        height: Constants.statusBarHeight,
+        backgroundColor: colors.green
     }
 })
 

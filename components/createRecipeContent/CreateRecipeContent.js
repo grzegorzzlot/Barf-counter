@@ -14,18 +14,16 @@ import Submit from './Submit.js';
 class CreateRecipeContent extends Component {
     render() {
         return(
-            <View style={styles.container}>
-                <ScrollView style={styles.scroll}>
-                    <CatWeight 
-                    label='Waga kota w kilogramach'
-                    unit='kg'
-                    />
-                    <List /> 
-                    <Egg />
-                    <Taurin />
-                    <Water />
-                    <Submit />
-                </ScrollView>
+            <View style={styles.container}>                
+                <CatWeight 
+                label='Waga kota w kilogramach'
+                unit='kg'
+                />
+                <List /> 
+                <Egg />
+                <Taurin />
+                <Water />
+                <Submit />               
             </View>
         )
     }
@@ -41,9 +39,6 @@ const mapDispatchToProps = {
 const styles =  StyleSheet.create({
     container: {
         flex: 1,
-    },
-    scroll: {
-        flex: 1
     }
 })
 
